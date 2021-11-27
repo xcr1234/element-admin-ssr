@@ -5,6 +5,7 @@
 <script>
 export default {
   layout: 'layout',
+  middleware: 'auth',
   mounted() {
     console.log('mount test2')
   }

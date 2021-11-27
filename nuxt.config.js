@@ -44,7 +44,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '~/server/session.js'
   ],
+
+  serverMiddleware: {
+    '/api': '~/server'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

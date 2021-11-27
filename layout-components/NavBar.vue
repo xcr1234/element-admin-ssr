@@ -15,7 +15,7 @@
     </div>
     <div class="right-menu">
 
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click" @command="handleCommand">
         <div class="avatar-wrapper">
           <img src="/nuxt.png" class="user-avatar">
           <i class="el-icon-caret-bottom" />
@@ -24,7 +24,7 @@
           <el-dropdown-item>个人中心</el-dropdown-item>
           <el-dropdown-item>首页</el-dropdown-item>
           <el-dropdown-item>项目地址</el-dropdown-item>
-          <el-dropdown-item divided>退出登录</el-dropdown-item>
+          <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -40,9 +40,21 @@ export default {
     ...mapState('app',['breadcrumb'])
   },
   methods:{
-    ...mapMutations('app',['toggleSideBar']),
+    ...mapMutations('app',['toggleSideBar','clearTag']),
+    ...mapMutations('user',['logOut']),
     hasLength(obj){
       return obj && obj.length
+    },
+    doLogOut(){
+      this.$axios.$get('/api/user/logout')
+      this.logOut()
+      this.clearTag()
+      this.$router.push('/login')
+    },
+    handleCommand(command) {
+      if(command === 'logout'){
+        this.doLogOut()
+      }
     }
   }
 }

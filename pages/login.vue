@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
     <el-form :model="ruleForm2" :rules="rules2"
+             @submit.native.prevent
              status-icon
              ref="ruleForm2"
              label-position="left"
@@ -10,14 +11,12 @@
       <el-form-item prop="username">
         <el-input type="text"
                   v-model="ruleForm2.username"
-                  auto-complete="off"
                   placeholder="用户名"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password"
                   v-model="ruleForm2.password"
-                  auto-complete="off"
                   placeholder="密码"
         ></el-input>
       </el-form-item>
@@ -26,13 +25,15 @@
       <!--        class="rememberme"-->
       <!--      >记住密码</el-checkbox>-->
       <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click="handleSubmit" :loading="logining">登录</el-button>
+        <el-button type="primary" style="width:100%;" native-type="submit" @click="handleSubmit" :loading="logining">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   data(){
     return {
@@ -49,10 +50,20 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('user',['setUser']),
     handleSubmit(){
       this.$refs.ruleForm2.validate(async (valid) => {
         if (valid) {
-
+          const data = await this.$axios.$post('/api/user/login',{
+            username: this.ruleForm2.username,
+            password: this.ruleForm2.password
+          })
+          if(data.ok){
+            this.setUser(data.data)
+            this.$router.push('/')
+          }else{
+            this.$message.error('登录失败：' + data.msg);
+          }
         }
       })
     }

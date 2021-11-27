@@ -1,10 +1,16 @@
 <template>
-  <h1 style="padding: 32px">hello</h1>
+  <h1 style="padding: 32px">hello {{user.cnName}}</h1>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   layout: 'layout',
+  middleware: 'auth',
+  computed:{
+    ...mapState('user',['user'])
+  },
   mounted() {
     console.log('mount index')
   }

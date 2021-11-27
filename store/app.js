@@ -27,5 +27,9 @@ export const mutations = {
   },
   toggleSideBar(state){
     state.sideBarOpen = !state.sideBarOpen
+  },
+  clearTag(state){
+    //清除标签，仅保留第一个（首页）
+    state.tags.splice(1)
   }
 }

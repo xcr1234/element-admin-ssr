@@ -39,7 +39,7 @@ export default {
     TagsView
   },
   computed: {
-    ...mapState('app', ['excludeCaches', 'tags', 'sideBarOpen'])
+    ...mapState('app', ['excludeCaches', 'tags', 'sideBarOpen']),
   },
   data() {
     return {
