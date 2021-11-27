@@ -1,5 +1,5 @@
 <template>
-  <h1 style="padding: 32px">hello {{user.cnName}}</h1>
+  <h1 style="padding: 32px">hello {{user? user.cnName : ''}}</h1>
 </template>
 
 <script>

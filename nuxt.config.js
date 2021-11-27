@@ -1,4 +1,6 @@
 const path = require('path')
+const FileManagerPlugin = require('filemanager-webpack-plugin');
+
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -57,7 +59,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
-    extend (config,ctx) {
+    extend (config, { isServer,isDev }) {
       // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
       // 找到匹配.svg的规则,然后将存放svg文件的目录排除
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
@@ -68,6 +70,34 @@ export default {
         include: [path.resolve(__dirname, 'assets/icons/svg')], //将存放svg的目录加入到loader处理目录
         use: [{ loader: 'svg-sprite-loader',options: {symbolId: 'icon-[name]'}}]
       })
+
+      if(isServer && !isDev){
+        const keepDirectory = ['.nuxt','assets','plugins','server','styles','static']
+        const keepFiles = ['nuxt.config.js','package.json','*.lock','.gitignore']
+        config.plugins.push(new FileManagerPlugin({
+          events:{
+            onStart:{
+              delete: ['dist/']
+            },
+            onEnd:{
+              copy:[
+                ...keepDirectory.map(item => {
+                  return {
+                    source: item,
+                    destination: 'dist/' + item
+                  }
+                }),
+                ...keepFiles.map(item => {
+                  return {
+                    source: item,
+                    destination: 'dist/'
+                  }
+                })
+              ]
+            }
+          }
+        }))
+      }
     }
   }
 }
