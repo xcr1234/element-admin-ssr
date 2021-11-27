@@ -1,0 +1,23 @@
+{
+  "name": "element-admin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.15.1",
+    "element-ui": "^2.15.2",
+    "js-cookie": "^3.0.1",
+    "less": "^4.1.2",
+    "less-loader": "5.0.0",
+    "nuxt": "^2.15.7",
+    "svg-sprite-loader": "^6.0.11",
+    "vue-i18n": "^8.26.7"
+  },
+  "devDependencies": {}
+}
