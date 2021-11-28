@@ -38,6 +38,14 @@ const rootConfig = {
             title: '菜单2',
             icon: 'lock'
           }
+        },
+        {
+          path: '/admin',
+          meta:{
+            title: '管理员菜单',
+            icon: 'lock',
+            role: ['admin']
+          }
         }
       ]
     },
@@ -54,3 +62,5 @@ const rootConfig = {
 
 
 Vue.prototype.$rootConfig = rootConfig
+
+export default rootConfig

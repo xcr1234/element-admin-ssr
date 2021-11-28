@@ -22,8 +22,8 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item>首页</el-dropdown-item>
-          <el-dropdown-item>项目地址</el-dropdown-item>
+          <el-dropdown-item command="home">首页</el-dropdown-item>
+          <el-dropdown-item command="project">项目地址</el-dropdown-item>
           <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -54,6 +54,12 @@ export default {
     handleCommand(command) {
       if(command === 'logout'){
         this.doLogOut()
+      }
+      if(command === 'home'){
+        this.$router.push('/')
+      }
+      if(command === 'project'){
+        window.open('https://gitee.com/ironV/element-express')
       }
     }
   }

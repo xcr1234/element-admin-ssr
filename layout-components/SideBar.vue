@@ -17,7 +17,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <side-bar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"/>
+        <side-bar-item v-for="route in menus" :key="route.path" :item="route" :base-path="route.path"/>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -35,7 +35,7 @@ export default {
     mobile:Boolean
   },
   computed:{
-    ...mapState('app',['sideBarOpen']),
+    ...mapState('app',['sideBarOpen','menus']),
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -48,8 +48,7 @@ export default {
   },
   data(){
     return {
-      variables,
-      routes: this.$rootConfig.menus
+      variables
     }
   }
 }

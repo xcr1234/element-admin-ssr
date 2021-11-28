@@ -49,8 +49,14 @@ export default {
       checked: false
     }
   },
+  mounted() {
+    if(this.$route.query.fail === 'role'){
+      this.$message.error('你没有权限访问此页面！')
+    }
+  },
   methods: {
-    ...mapMutations('user',['setUser']),
+    ...mapMutations('user',['setUser','setRoles']),
+    ...mapMutations('app',['calcUserMenus']),
     handleSubmit(){
       this.$refs.ruleForm2.validate(async (valid) => {
         if (valid) {
@@ -59,7 +65,14 @@ export default {
             password: this.ruleForm2.password
           })
           if(data.ok){
+            const roles = data.data.roles || []
+            this.calcUserMenus(
+              {
+                menus:this.$rootConfig.menus,
+                roles
+              })
             this.setUser(data.data)
+            this.setRoles(roles)
             this.$router.push('/')
           }else{
             this.$message.error('登录失败：' + data.msg);

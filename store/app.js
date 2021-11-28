@@ -1,3 +1,4 @@
+import {calcMenus} from "~/layout-components/utils";
 
 
 export const state = () => {
@@ -5,7 +6,8 @@ export const state = () => {
     breadcrumb: [],
     tags:[],
     excludeCaches: [],
-    sideBarOpen: true
+    sideBarOpen: true,
+    menus: []
   }
 }
 
@@ -31,5 +33,8 @@ export const mutations = {
   clearTag(state){
     //清除标签，仅保留第一个（首页）
     state.tags.splice(1)
+  },
+  calcUserMenus(state,{menus,roles}){
+    state.menus = calcMenus(menus,roles)
   }
 }

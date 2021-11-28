@@ -57,3 +57,26 @@ export const isMobile = () => {
   return /Android|webOS| iPhone | iPad | iPod |BlackBerry|opera mini|opera mobile|appleWebkit.*mobile|mobile/i.test(
     navigator.userAgent)
 }
+
+export const matchRoles = (userRoles,roles) => {
+  for(let role of roles){
+    if(userRoles.indexOf(role) > -1){
+      return true
+    }
+  }
+  return false
+}
+
+export const calcMenus = (menus,roles) => {
+  const result = []
+  menus.forEach(menu => {
+    const obj = {...menu}
+    if(menu.children){
+      obj.children = calcMenus(menu.children,roles)
+    }
+    if(!menu.meta.role || matchRoles(roles,menu.meta.role)){
+      result.push(obj)
+    }
+  })
+  return result
+}
