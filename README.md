@@ -2,13 +2,18 @@
 
 基于Element UI + Nuxt + Express的前后端管理方案，服务端渲染
 
+## 简单来说就是 Element Admin + 服务端渲染
+
+为什么要使用服务端渲染：
+最大的好处就是开发快、支持SEO
+
 # 特点
 
 前端是使用的Vue，后端是[Nuxt.js](https://www.nuxtjs.cn/guide) 、[Express](https://www.expressjs.com.cn/)
 
 两者运行在同一个容器中，省去了传统前后端分离应用的交互
 
-**适合开发要求快，对性能要求不是特别高的应用**
+**适合开发要求快或者需要SEO，对并发性能要求不高的应用**
 
 - 开箱即用
 - 登录 / 注销 / 权限验证
