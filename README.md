@@ -12,7 +12,14 @@
 
 # 运行
 
-1.安装依赖，执行 `yarn install` 或者 `npm install`
+去Github，访问 [https://github.com/xcr1234/element-admin-ssr](https://github.com/xcr1234/element-admin-ssr)
+
+点这个，会把项目代码拷贝到自己空间
+
+![](.gitresource/img_2.png)
+
+
+1.克隆项目，安装依赖，执行 `yarn install` 或者 `npm install`
 
 2.执行`npm run dev`
 
@@ -32,3 +39,7 @@
 # 详细文档
 
 https://gitee.com/ironV/element-express/wikis
+
+# 提问
+
+去Github提Issue，或者在码云评论
