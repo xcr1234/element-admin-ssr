@@ -39,3 +39,11 @@ export const getUserByName = (username) => {
     },300)
   })
 }
+
+export const getAll = () => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(users)
+    },300)
+  })
+}

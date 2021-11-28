@@ -1,5 +1,6 @@
 import express from 'express'
-import {getUserByName} from "../data";
+import {getAll, getUserByName} from "../data";
+import {roleAdmin} from "../middleware/role"
 
 
 const router = express.Router()
@@ -53,6 +54,16 @@ router.get('/logout',((req, res) => {
   return res.json({
     ok: true
   })
+}))
+
+router.get('/list',roleAdmin,(async (req, res) => {
+  const users = await getAll()
+  return res.json(users.map(u => {
+    return {
+      ...u,
+      password: null
+    }
+  }))
 }))
 
 

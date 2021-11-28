@@ -29,18 +29,24 @@
 
 # 运行
 
-去Github，访问 [https://github.com/xcr1234/element-admin-ssr](https://github.com/xcr1234/element-admin-ssr)
-
-点这个，会把项目代码拷贝到自己空间
-
-![](.gitresource/img_2.png)
-
-
 1.克隆项目，安装依赖，执行 `yarn install` 或者 `npm install`
 
 2.执行`npm run dev`
 
 3.浏览器打开 localhost:3000
+
+账号：
+- 管理员 admin 密码：admin
+- 用户 user 密码：user
+- 用户 zhangsan 密码：123456
+
+# 开发
+
+去Github，访问 [https://github.com/xcr1234/element-admin-ssr](https://github.com/xcr1234/element-admin-ssr)
+
+点这个，会把项目代码拷贝到自己空间
+
+![](.gitresource/img_2.png)
 
 # 生产发布
 
